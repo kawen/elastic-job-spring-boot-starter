@@ -62,7 +62,7 @@ public class JobConfParser implements ApplicationContextAware {
 		for (Object confBean : beanMap.values()) {
 			Class<?> clz = confBean.getClass();
 			// 解决CGLIB代理问题
-			String jobTypeName = clz.getInterfaces()[0].getSimpleName();
+			String jobTypeName = clz.getSuperclass().getSuperclass().getInterfaces()[0].getSimpleName();
 			if (!jobTypeNameList.contains(jobTypeName)) {
 				jobTypeName = clz.getSuperclass().getInterfaces()[0].getSimpleName();
 				clz = clz.getSuperclass();
